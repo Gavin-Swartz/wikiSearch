@@ -11,7 +11,10 @@ def find_site_links(soup):
 def get_link_urls(links, links_list):
     for link in links:
         new_link = link.get('href')
-        links_list.append(new_link)
+        new_link = str(new_link)
+        if new_link.startswith('/wiki/') and new_link not in links_list:
+            new_link = 'https://en.wikipedia.org/' + new_link
+            links_list.append(new_link)
     return links_list
 
 
