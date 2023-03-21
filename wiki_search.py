@@ -10,11 +10,13 @@ def find_site_links(soup):
 
 def get_page_title(link, page_titles, page_links):
     new_title = link.get('title')
-    if new_title not in page_titles and not str(new_title).endswith('(page does not exist)') and not str(new_title).startswith('Special:BookSources/'):
+    new_title = str(new_title)
+    if new_title not in page_titles and not new_title.endswith('(page does not exist)') and not new_title.startswith('Special:BookSources/') and new_title != 'None':
         new_link = link.get('href')
+        new_link = str(new_link)
         new_link = 'https://en.wikipedia.org' + new_link
         page_links.append(new_link)
-        page_titles.append(new_title)
+        page_titles.append(new_title.lower())
 
 
 page_titles = []
