@@ -1,5 +1,4 @@
 import difflib
-
 import requests
 from bs4 import BeautifulSoup
 import wiki_search
@@ -24,7 +23,7 @@ def search(page_titles, user_search):
         index = 0
         while index < len(closest_matches):
             display_number = index + 1
-            print(str(display_number) + '. ' + closest_matches[index])
+            print(str(display_number) + '. ' + str(closest_matches[index]))
             index += 1
         option = input('Which option best matches your search?')
         if option == str(1):
