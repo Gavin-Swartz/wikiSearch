@@ -28,7 +28,11 @@ def choose_article():
         print(str(index + 1) + '. ' + article)
         index += 1
     user_choice = input('Choose an article to pull links from: ')
-    url_choice = articles.links[int(user_choice) - 1]
+    try:
+        url_choice = articles.links[int(user_choice) - 1]
+    except:
+        print('Invalid number')
+        choose_article()
     return url_choice
 
 
@@ -45,6 +49,9 @@ links = find_site_links()
 for link in links:
     get_page_title()
 
+print_index = 0
 for title in page_titles:
-    print(title)
+    print(str(print_index + 1) + '. ' + title)
+    print_index += 1
+
 print(str(len(page_titles)) + ' results')
