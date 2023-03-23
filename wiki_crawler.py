@@ -9,7 +9,7 @@ def find_site_links():
     return links_found
 
 
-def get_page_title():
+def get_page_title(link):
     new_title = link.get('title')
     new_title = str(new_title).lower()
     if new_title not in page_titles and not new_title.endswith('(page does not exist)') and \
@@ -36,6 +36,12 @@ def choose_article():
     return url_choice
 
 
+def display_inner_sites():
+    links = find_site_links()
+    for link in links:
+        get_page_title(link)
+
+
 page_titles = []
 page_links = []
 
@@ -44,7 +50,4 @@ url = choose_article()
 response = requests.get(url)
 soup = BeautifulSoup(response.content, 'html.parser')
 
-links = find_site_links()
-
-for link in links:
-    get_page_title()
+display_inner_sites()
